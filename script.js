@@ -79,10 +79,17 @@ function SendEmail(){
         alert("Veuillez saisir une adresse e-mail valide.");
         return;
     }
-    if (!isValidPhoneNumber(tel)) {
-        alert("Veuillez saisir un numéro de téléphone valide.");
-        return;
-    }
+    var telInput = document.getElementById('tel');
+      var telError = document.getElementById('telError');
+      var regexPhone = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+
+      if (regexPhone.test(telInput.value)) {
+        // Le numéro de téléphone est valide
+        telError.textContent = '';
+      } else {
+        // Le numéro de téléphone est invalide
+        telError.textContent = 'Le numéro de téléphone n\'est pas valide';
+      }
     let body = "Nom: " + nom + "<br/> Email: " + email + "<br/> Contact: " + tel + "<br/> Message: <br/>" + message;
     console.log(body);
 
@@ -104,27 +111,6 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-function isValidPhoneNumber(phoneNumber) {
-    // Utiliser libphonenumber-js pour valider le numéro de téléphone
-    try {
-        const phoneNumberInstance = new libphonenumber.AsYouType().input(phoneNumber);
-        return phoneNumberInstance.isValid();
-    } catch (error) {
-        return false;
-    }
-}
-function showAlert(message, textColor) {
-    alertMessage = document.createElement("div");
-    alertMessage.textContent = message;
-    alertMessage.style.color = textColor;
-    alertMessage.style.fontWeight = "bold";
-    alertMessage.style.padding = "10px";
-    alertMessage.style.border = "1px solid " + textColor;
-    alertMessage.style.borderRadius = "5px";
-    alertMessage.style.marginBottom = "10px";
-    document.body.appendChild(alertMessage);
-    setTimeout(function() {
-        alertMessage.style.display = "none";
-    }, 3000); // Masquer l'alerte après 3 secondes
-}
+
+
 

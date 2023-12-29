@@ -420,6 +420,10 @@ img {
     margin-left: auto;
 }
 
+.error-message {
+    color: red;
+  }
+
 /* ===== FOOTER =====*/
 .footer {
     background-color: var(--second-color);
