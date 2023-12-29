@@ -298,11 +298,12 @@
             <h2 class="section-title">Contact</h2>
 
             <div class="contact__container bd-grid">
-                <form action="" class="contact__form">
-                    <input type="text" placeholder="Nom" class="contact__input">
-                    <input type="mail" placeholder="Email" class="contact__input">
-                    <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                    <input type="button" value="Envoyer" class="contact__button button">
+                <form action="" class="contact__form" id="contactForm">
+                    <input type="text" placeholder="Nom" class="contact__input" id="nom" required>
+                    <input type="mail" placeholder="Email" class="contact__input" id="email" required>
+                    <input type="text" placeholder="Contact" class="contact__input" id="contact" required>
+                    <textarea name="" id="message" cols="0" rows="10" class="contact__input"  required></textarea>
+                    <input type="button" value="Envoyer" class="contact__button button" onclick="SendEmail()">
                 </form>
             </div>
         </section>
@@ -325,6 +326,30 @@
 
     <!--===== MAIN JS =====-->
     <script src="script.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.js"></script> -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function SendEmail(){
+
+            let nom =document.getElementById("nom").value;
+            let email =document.getElementById("email").value;
+            let message =document.getElementById("message").value;
+            let contact =document.getElementById("contact").value;
+
+            let body = "Nom: " + nom + "<br/> Email: " + email + "<br/> Contact: " + contact + "<br/> Message: <br/>" + message;
+
+            Email.send({
+            SecureToken : "054d8fdf-9931-4a22-8a88-ec8afbbf91c2",
+            To : 'maigaib82@gmail.com',
+            From : "maigaib82@gmail.com",
+            Subject : "Message de mon Portfolio",
+            Body : body
+            }).then(
+            message => alert(message)
+            );
+
+            document.getElementById("contactForm").reset();
+
+        }
+    </script>
 </body>
 </html>
