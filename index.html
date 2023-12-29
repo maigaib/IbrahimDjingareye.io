@@ -328,28 +328,7 @@
     <script src="script.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
-        function SendEmail(){
-
-            let nom =document.getElementById("nom").value;
-            let email =document.getElementById("email").value;
-            let message =document.getElementById("message").value;
-            let contact =document.getElementById("contact").value;
-
-            let body = "Nom: " + nom + "<br/> Email: " + email + "<br/> Contact: " + contact + "<br/> Message: <br/>" + message;
-
-            Email.send({
-            SecureToken : "054d8fdf-9931-4a22-8a88-ec8afbbf91c2",
-            To : 'maigaib82@gmail.com',
-            From : "maigaib82@gmail.com",
-            Subject : "Message de mon Portfolio",
-            Body : body
-            }).then(
-            message => alert(message)
-            );
-
-            document.getElementById("contactForm").reset();
-
-        }
+        
     </script>
 </body>
 </html>
