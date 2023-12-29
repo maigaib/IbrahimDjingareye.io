@@ -68,9 +68,23 @@ function SendEmail(){
     let nom =document.getElementById("nom").value;
     let email =document.getElementById("email").value;
     let message =document.getElementById("message").value;
-    let contact =document.getElementById("contact").value;
+    let tel = document.getElementById("tel").value;
 
-    let body = "Nom: " + nom + "<br/> Email: " + email + "<br/> Contact: " + contact + "<br/> Message: <br/>" + message;
+    if (!nom || !email || !message || !tel) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        alert("Veuillez saisir une adresse e-mail valide.");
+        return;
+    }
+    if (!isValidPhoneNumber(tel)) {
+        alert("Veuillez saisir un numéro de téléphone valide.");
+        return;
+    }
+    let body = "Nom: " + nom + "<br/> Email: " + email + "<br/> Contact: " + tel + "<br/> Message: <br/>" + message;
+    console.log(body);
 
     Email.send({
     SecureToken : "054d8fdf-9931-4a22-8a88-ec8afbbf91c2",
@@ -84,6 +98,11 @@ function SendEmail(){
 
     document.getElementById("contactForm").reset();
 
+}
+function isValidEmail(email) {
+    // Expression régulière pour valider une adresse e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
 
 
