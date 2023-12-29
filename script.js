@@ -104,5 +104,27 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
-
+function isValidPhoneNumber(phoneNumber) {
+    // Utiliser libphonenumber-js pour valider le numéro de téléphone
+    try {
+        const phoneNumberInstance = new libphonenumber.AsYouType().input(phoneNumber);
+        return phoneNumberInstance.isValid();
+    } catch (error) {
+        return false;
+    }
+}
+function showAlert(message, textColor) {
+    alertMessage = document.createElement("div");
+    alertMessage.textContent = message;
+    alertMessage.style.color = textColor;
+    alertMessage.style.fontWeight = "bold";
+    alertMessage.style.padding = "10px";
+    alertMessage.style.border = "1px solid " + textColor;
+    alertMessage.style.borderRadius = "5px";
+    alertMessage.style.marginBottom = "10px";
+    document.body.appendChild(alertMessage);
+    setTimeout(function() {
+        alertMessage.style.display = "none";
+    }, 3000); // Masquer l'alerte après 3 secondes
+}
 
