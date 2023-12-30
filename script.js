@@ -72,14 +72,19 @@ function SendEmail(){
 
     if (!nom || !email || !message || !tel) {
         alert("Veuillez remplir tous les champs.");
-        return;
+        // return;
     }
-
-    if (!isValidEmail(email)) {
-        alert("Veuillez saisir une adresse e-mail valide.");
-        return;
+        var emailInput = document.getElementById('email');
+        var emailError = document.getElementById('emailError');
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+        emailError.textContent = '';
+      } else{
+        emailError.textContent = 'Veuillez saisir une adresse e-mail valide.';
+        // alert("Veuillez saisir une adresse e-mail valide.");
+        // return;
     }
-    var telInput = document.getElementById('tel');
+      var telInput = document.getElementById('tel');
       var telError = document.getElementById('telError');
       var regexPhone = /^\+(?:[0-9] ?){6,14}[0-9]$/;
 
@@ -88,7 +93,7 @@ function SendEmail(){
         telError.textContent = '';
       } else {
         // Le numéro de téléphone est invalide
-        telError.textContent = 'Le numéro de téléphone n\'est pas valide';
+        telError.textContent = 'Veillez saisir un numéro valide';
       }
     let body = "Nom: " + nom + "<br/> Email: " + email + "<br/> Contact: " + tel + "<br/> Message: <br/>" + message;
     console.log(body);
@@ -106,11 +111,11 @@ function SendEmail(){
     document.getElementById("contactForm").reset();
 
 }
-function isValidEmail(email) {
-    // Expression régulière pour valider une adresse e-mail
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+// function isValidEmail(email) {
+//     // Expression régulière pour valider une adresse e-mail
+//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     return emailRegex.test(email);
+// }
 
 
 
